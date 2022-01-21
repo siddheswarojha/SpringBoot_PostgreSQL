@@ -34,4 +34,10 @@ public class StudentServices {
 //                22
 //        ));
     }
+
+    public void addStudent(Student student)
+    {
+        studentRepository.save(student);
+
+    }
 }
