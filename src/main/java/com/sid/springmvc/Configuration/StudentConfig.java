@@ -22,17 +22,22 @@ public class StudentConfig {
             Student sid = new Student(
                 "Sid",
                 "sid@gmail.com",
-                LocalDate.of(2000, Month.AUGUST,31),
-                22
+                LocalDate.of(2000, Month.AUGUST,31)
         );
             Student abhishek = new Student(
                     "Abhishek",
                     "abhi@gmail.com",
-                    LocalDate.of(2000, Month.MAY,2),
-                    21
+                    LocalDate.of(2000, Month.MAY,2)
             );
 
-            studentRepository.saveAll(List.of(sid,abhishek));
+            Student gourish = new Student(
+                    "Gourish",
+                    "gourish@gmail.com",
+                    LocalDate.of(2005, Month.MAY,2)
+            );
+
+
+            studentRepository.saveAll(List.of(sid,abhishek,gourish));
 
         };
 
