@@ -28,12 +28,20 @@ public class MYController {
         return studentServices.getStudent();
     }
 
-
     @PostMapping("/addStudent")
     public void addStudent(@RequestBody  Student student)
     {
        studentServices.addStudent(student);
     }
+
+    @DeleteMapping(path = "/deleteStudent/{studentId}")
+    public  void deleteStudent(@PathVariable("studentId") Long studentId)
+    {
+
+        studentServices.deleteStudent(studentId);
+    }
+
+
 
 
 
