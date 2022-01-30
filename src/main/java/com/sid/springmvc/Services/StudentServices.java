@@ -3,8 +3,12 @@ package com.sid.springmvc.Services;
 import com.sid.springmvc.Model.Student;
 import com.sid.springmvc.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -57,6 +61,38 @@ public class StudentServices {
             throw new IllegalStateException("Id Not found");
         }
         studentRepository.deleteById(studentId);
+
+    }
+
+    @Transactional
+    public void updateStudent(Long studentId, String name,String email) {
+
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(()->new IllegalStateException("Student Not Found"));
+
+
+
+
+
+            if(name!=null && !Objects.equals(student.getName(),name))
+            {
+                student.setName(name);
+            }
+
+
+        if(email!=null && !Objects.equals(student.getEmail(),name))
+        {
+            Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
+
+            if(studentOptional.isPresent())
+            {
+                throw new IllegalStateException("Email is already in use");
+            }
+            student.setEmail(email);
+        }
+
+
+
 
     }
 }
